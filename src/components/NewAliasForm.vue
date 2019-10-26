@@ -1,0 +1,89 @@
+<template>
+  <div class="container">
+    <h1 class="title">Shorten your link.</h1>
+    <form ref="form" class="form" @submit.prevent>
+
+      <div class="row">
+        <label for="url" class="label">Link to shorten</label>
+
+        <Input v-model="link" id="url" class="link-input" type="url" placeholder="Link to shorten" required/>
+        <Button class="button" @click="shortenLink">
+          Shorten
+        </Button>
+      </div>
+
+      <div class="row" v-if="shortenedLinkToken">
+        <a href="#">{{ shortenedLinkToken }}</a>
+      </div>
+
+      <div class="row" v-if="errorMessage">
+        {{ errorMessage }}
+      </div>
+    </form>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+import Button from '@/components/Button'
+import Input from '@/components/Input'
+
+export default {
+  components: {
+    Button,
+    Input
+  },
+  data () {
+    return {
+      link: '',
+      shortenedLink: '',
+      shortenedLinkToken: '',
+      errorMessage: ''
+    }
+  },
+  methods: {
+    async shortenLink () {
+      if (this.$refs.form.checkValidity()) {
+        try {
+          const response = await axios.post('https://s.komputeryk.pl/api/aliases', { url: this.link })
+          this.shortenedLinkToken = response.data.token
+        } catch (error) {
+          this.errorMessage = 'API request error'
+        }
+      }
+    }
+  }
+}
+
+</script>
+
+<style scoped>
+  .form {
+  }
+
+  .title {
+    padding: 20px 0;
+    margin: 0;
+    font-size: 40px;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .row {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+  }
+
+  .link-input {
+    flex: 3;
+  }
+
+  .button {
+    flex: 1;
+    margin-left: 5px;
+  }
+</style>
