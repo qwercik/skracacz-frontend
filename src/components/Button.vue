@@ -2,10 +2,9 @@
   <button
     v-bind="$attrs"
     @click="$emit('click', $emit)"
+    class="button"
   >
-    <span class="button-text">
-      <slot/>
-    </span>
+    <slot/>
   </button>
 </template>
 
@@ -20,12 +19,8 @@ export default {
     color: #303030;
     background: #EEEEEE;
     border: 1px solid #202020;
-    padding: 0;
-    transition: 0.6s;
-  }
-
-  .button-text {
     padding: 10px;
+    transition: 0.6s;
   }
 
   .button:hover,

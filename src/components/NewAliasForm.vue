@@ -6,12 +6,15 @@
         <label for="url" class="label">Link to shorten</label>
 
         <Input v-model="link" id="url" class="link-input" type="url" placeholder="Link to shorten" required/>
-        <Button class="button" @click="shortenLink">
+        <Button class="shorten-button" @click="shortenLink">
           Shorten
         </Button>
       </div>
 
       <div class="row" v-if="shortenedLink">
+        <Button class="copy-button" @click="copyShortenLink">
+          Copy
+        </Button>
         <Input v-model="shortenedLink" class="shortened-link"/>
       </div>
 
@@ -49,6 +52,9 @@ export default {
           this.errorMessage = 'API request error'
         }
       }
+    },
+    copyShortenLink () {
+      this.$clipboard(this.shortenedLink)
     }
   }
 }
@@ -77,7 +83,7 @@ export default {
   }
 
   .link-input {
-    flex: 3;
+    flex: 2;
   }
 
   .shortened-link {
@@ -85,8 +91,13 @@ export default {
     text-align: center;
   }
 
-  .button {
+  .shorten-button {
     flex: 1;
     margin-left: 5px;
+  }
+
+  .copy-button {
+    flex: 1;
+    margin-right: 5px;
   }
 </style>
