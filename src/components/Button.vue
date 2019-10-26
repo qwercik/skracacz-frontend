@@ -1,17 +1,17 @@
 <template>
-  <button @click="$emit('click', $emit)">
-    {{ text }}
+  <button
+    v-bind="$attrs"
+    @click="$emit('click', $emit)"
+  >
+    <span class="button-text">
+      <slot/>
+    </span>
   </button>
 </template>
 
 <script>
 export default {
-  props: {
-    text: {
-      type: String,
-      required: true
-    }
-  }
+  inheritAttrs: false
 }
 </script>
 
@@ -20,9 +20,12 @@ export default {
     color: #303030;
     background: #EEEEEE;
     border: 1px solid #202020;
-
-    padding: 10px;
+    padding: 0;
     transition: 0.6s;
+  }
+
+  .button-text {
+    padding: 10px;
   }
 
   .button:hover,
