@@ -2,7 +2,6 @@
   <div class="container">
     <h1 class="title">Shorten your link.</h1>
     <form ref="form" class="form" @submit.prevent>
-
       <div class="row">
         <label for="url" class="label">Link to shorten</label>
 
@@ -12,8 +11,8 @@
         </Button>
       </div>
 
-      <div class="row" v-if="shortenedLinkToken">
-        <a href="#">{{ shortenedLinkToken }}</a>
+      <div class="row" v-if="shortenedLink">
+        <a :href="shortenedLink">{{ shortenedLink }}</a>
       </div>
 
       <div class="row" v-if="errorMessage">
@@ -37,7 +36,6 @@ export default {
     return {
       link: '',
       shortenedLink: '',
-      shortenedLinkToken: '',
       errorMessage: ''
     }
   },
@@ -46,7 +44,7 @@ export default {
       if (this.$refs.form.checkValidity()) {
         try {
           const response = await axios.post('https://s.komputeryk.pl/api/aliases', { url: this.link })
-          this.shortenedLinkToken = response.data.token
+          this.shortenedLink = 'localhost:8080/' + response.data.token
         } catch (error) {
           this.errorMessage = 'API request error'
         }

@@ -1,16 +1,12 @@
 <template>
   <div id="app" class="app">
-    <NewAliasForm/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import NewAliasForm from '@/components/NewAliasForm'
-
 export default {
-  components: {
-    NewAliasForm
-  }
+
 }
 </script>
 
