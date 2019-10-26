@@ -27,4 +27,10 @@ export default {
     align-items: center;
     height: 100vh;
   }
+
+  @media (max-width: 400px) {
+    .app {
+      margin: 20px;
+    }
+  }
 </style>

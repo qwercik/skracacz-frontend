@@ -15,7 +15,7 @@
         <Button class="copy-button" @click="copyShortenLink">
           Copy
         </Button>
-        <Input v-model="shortenedLink" class="shortened-link"/>
+        <Input v-model="shortenedLink" @focus.native="$event.target.select()" class="link-input shortened-link"/>
       </div>
 
       <div class="row" v-if="errorMessage">
@@ -47,6 +47,7 @@ export default {
       if (this.$refs.form.checkValidity()) {
         try {
           const response = await axios.post('https://s.komputeryk.pl/api/aliases', { url: this.link })
+
           this.shortenedLink = 'http://localhost:8080/' + response.data.token
         } catch (error) {
           this.errorMessage = 'API request error'
@@ -62,7 +63,8 @@ export default {
 </script>
 
 <style scoped>
-  .form {
+  .container {
+    text-align: center;
   }
 
   .title {
@@ -87,7 +89,6 @@ export default {
   }
 
   .shortened-link {
-    width: 100%;
     text-align: center;
   }
 
