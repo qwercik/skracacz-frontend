@@ -44,7 +44,7 @@ export default {
       if (this.$refs.form.checkValidity()) {
         try {
           const response = await axios.post('https://s.komputeryk.pl/api/aliases', { url: this.link })
-          this.shortenedLink = 'localhost:8080/' + response.data.token
+          this.shortenedLink = 'http://localhost:8080/' + response.data.token
         } catch (error) {
           this.errorMessage = 'API request error'
         }
