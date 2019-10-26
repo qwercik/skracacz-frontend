@@ -1,0 +1,21 @@
+{
+	"name": "Skracacz",
+	"short_name": "Skracacz",
+	"icons": [{
+		"src": "/images/icons/192.png",
+		"sizes": "128x128",
+		"type": "image/png"
+	},{
+		"src": "/images/icons/152.png",
+		"sizes": "152x152",
+		"type": "image/png"
+	},{
+		"src": "/images/icons/512.png",
+		"sizes": "512x512",
+		"type": "image/png"
+	}],
+	"start_url": "/index.html",
+	"display": "standalone",
+	"background_color": "#FFFFFF",
+	"theme_color": "#FFFFFF"
+}
