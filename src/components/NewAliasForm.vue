@@ -12,7 +12,7 @@
       </div>
 
       <div class="row" v-if="shortenedLink">
-        <a :href="shortenedLink">{{ shortenedLink }}</a>
+        <Input v-model="shortenedLink" class="shortened-link"/>
       </div>
 
       <div class="row" v-if="errorMessage">
@@ -78,6 +78,11 @@ export default {
 
   .link-input {
     flex: 3;
+  }
+
+  .shortened-link {
+    width: 100%;
+    text-align: center;
   }
 
   .button {
