@@ -1,5 +1,5 @@
 <template>
-  <div v-if="error">
+  <div v-if="error" class="wrapper">
     <h1 class="title">The alias does not exist</h1>
     <p class="description">
       Make sure that your link is correct.
@@ -35,11 +35,11 @@ export default {
 </script>
 
 <style>
-  .title {
-    font-size: 40px;
+  .wrapper {
+    text-align: center;
   }
 
-  .description {
-    text-align: center;
+  .title {
+    font-size: 40px;
   }
 </style>
