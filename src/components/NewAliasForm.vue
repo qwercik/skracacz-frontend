@@ -29,6 +29,7 @@
 import axios from 'axios'
 import Button from '@/components/Button'
 import Input from '@/components/Input'
+import config from '@/config'
 
 export default {
   components: {
@@ -46,9 +47,9 @@ export default {
     async shortenLink () {
       if (this.$refs.form.checkValidity()) {
         try {
-          const response = await axios.post('https://s.komputeryk.pl/api/aliases', { url: this.link })
+          const response = await axios.post(`${config.apiUrl}/aliases`, { url: this.link })
 
-          this.shortenedLink = 'http://localhost:8080/' + response.data.token
+          this.shortenedLink = config.frontUrl + '/' + response.data.token
         } catch (error) {
           this.errorMessage = 'API request error'
         }

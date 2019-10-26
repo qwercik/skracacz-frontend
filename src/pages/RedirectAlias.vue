@@ -9,6 +9,7 @@
 
 <script>
 import axios from 'axios'
+import config from '@/config'
 
 export default {
   props: ['token'],
@@ -22,7 +23,7 @@ export default {
     if (!regex.test(this.token)) {
       this.error = true
     } else {
-      axios.get(`https://s.komputeryk.pl/api/aliases/${this.token}`)
+      axios.get(`${config.apiUrl}/aliases/${this.token}`)
         .then(response => {
           location.href = response.data.url
         })
