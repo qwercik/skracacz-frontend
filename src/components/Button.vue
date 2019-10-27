@@ -25,7 +25,8 @@ export default {
 
   .button:hover,
   .button:focus {
-    background: #55F352;
+    color: #EEEEEE;
+    background: #303030;
     transition: 0.6s
   }
 </style>
