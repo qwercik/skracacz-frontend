@@ -5,7 +5,7 @@
       <div class="row">
         <label for="url" class="label">Link to shorten</label>
 
-        <Input v-model="link" id="url" class="link-input" type="url" placeholder="Link to shorten" required/>
+        <Input v-model="link" id="url" class="link-input" type="text" placeholder="Link to shorten" pattern="(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" required/>
         <Button class="shorten-button" @click="shortenLink">
           Shorten
         </Button>
