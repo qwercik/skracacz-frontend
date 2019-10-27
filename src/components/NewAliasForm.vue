@@ -46,16 +46,16 @@ export default {
     }
   },
   methods: {
-    async shortenLink () {
+    shortenLink () {
       if (this.$refs.form.checkValidity()) {
-        try {
-          const response = await axios.post(`${config.apiUrl}/aliases`, { url: this.link })
-
-          this.shortenedLink = config.frontUrl + '/' + response.data.token
-          this.copied = false
-        } catch (error) {
-          this.errorMessage = 'API request error'
-        }
+        axios.post(`${config.apiUrl}/aliases`, { url: this.link })
+          .then(response => {
+            this.shortenedLink = config.frontUrl + '/' + response.data.token
+            this.copied = false
+          })
+          .catch(error => {
+            this.errorMessage = error.response.data.message || 'There was an error with communicating with server'
+          })
       }
     },
     copyShortenLink () {
