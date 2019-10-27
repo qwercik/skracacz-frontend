@@ -23,8 +23,7 @@ export default {
     transition: 0.6s;
   }
 
-  .button:hover,
-  .button:focus {
+  .button:hover {
     color: #EEEEEE;
     background: #303030;
     transition: 0.6s

@@ -15,7 +15,8 @@
         <Button :class="{ 'copy-button': true, 'link-copied': copied}" @click="copyShortenLink">
           Copy
         </Button>
-        <Input v-model="shortenedLink" @focus.native="$event.target.select()" class="link-input shortened-link"/>
+        <Input v-model="shortenedLink" id="shortenedLink" @focus.native="$event.target.select()" class="link-input shortened-link"/>
+        <label for="shortenedLink" class="label">Link to shorten</label>
       </div>
 
       <div class="row" v-if="errorMessage">
@@ -78,7 +79,9 @@ export default {
   }
 
   .label {
-    display: none;
+    /* hide label and not break accessibility */
+    text-indent: -9999em;
+    outline: 0;
   }
 
   .row {
