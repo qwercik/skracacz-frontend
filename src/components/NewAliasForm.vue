@@ -5,14 +5,14 @@
       <div class="row">
         <label for="url" class="label">Link to shorten</label>
 
-        <Input v-model="link" id="url" class="link-input" type="text" placeholder="Link to shorten" pattern="(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" required/>
+        <Input v-model="link" id="url" class="link-input" type="text" placeholder="Link to shorten" pattern="(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" required/>
         <Button class="shorten-button" @click="shortenLink">
           Shorten
         </Button>
       </div>
 
       <div class="row" v-if="shortenedLink">
-        <Button class="copy-button" @click="copyShortenLink">
+        <Button :class="{ 'copy-button': true, 'link-copied': copied}" @click="copyShortenLink">
           Copy
         </Button>
         <Input v-model="shortenedLink" @focus.native="$event.target.select()" class="link-input shortened-link"/>
@@ -40,7 +40,8 @@ export default {
     return {
       link: '',
       shortenedLink: '',
-      errorMessage: ''
+      errorMessage: '',
+      copied: false
     }
   },
   methods: {
@@ -50,6 +51,7 @@ export default {
           const response = await axios.post(`${config.apiUrl}/aliases`, { url: this.link })
 
           this.shortenedLink = config.frontUrl + '/' + response.data.token
+          this.copied = false
         } catch (error) {
           this.errorMessage = 'API request error'
         }
@@ -57,6 +59,7 @@ export default {
     },
     copyShortenLink () {
       this.$clipboard(this.shortenedLink)
+      this.copied = true
     }
   }
 }
@@ -101,5 +104,10 @@ export default {
   .copy-button {
     flex: 1;
     margin-right: 5px;
+  }
+
+  .link-copied {
+    color: #101010;
+    background: #30DE99;
   }
 </style>
