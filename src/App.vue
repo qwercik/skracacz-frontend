@@ -31,6 +31,7 @@ export default {
   @media (max-width: 400px) {
     .app {
       margin: 20px;
+      height: 100%;
     }
   }
 </style>
