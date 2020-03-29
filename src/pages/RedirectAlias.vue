@@ -19,7 +19,7 @@ export default {
     }
   },
   created () {
-    const regex = /[A-Za-z0-9]+/
+    const regex = /[A-Za-z0-9-]+/
     if (!regex.test(this.token)) {
       this.error = true
     } else {
